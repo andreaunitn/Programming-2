@@ -1,0 +1,25 @@
+Project documentation
+
+This document describes how the GUI implementation of the yatzy game took place, paying particular attention to the game's functionality, the program structure and the design adopted. The UI is composed of several elements. In the upper part of the main window it is possible to find, in addition to the title, 5 labels and 5 buttons (with the name "Lock"). The former contain the images of the rolled dices, while the latter have the function of blocking the corresponding dice so that on the next round it will not be rolled. The left side of the window shows: the total number of players; a button ("New roll") that allows, if possible, to make another roll; a button ("Next player") that allows, if possible, to pass the turn to the successive player; a button ("Reset") that restarts the game and a label ("Winner") that shows the winner when the game is over. The right side, instead, shows information regarding the player in turn (with the number of rolls done and the number of rolls left), and a timer to indicate the total game time.
+The following functionalities have been implemented:
+
+	- displaying the faces of the rolled dices. This has been done initially using only labels, then by employing the provided images;
+
+	- possibility to roll again or to give turn to the next player. Both these features have been implemented by means of buttons. In particular, when the "New roll" button is pressed, the lock buttons are enabled, the dices are rolled and the values displayed on the screen, all the labels and buttons are set accordingly (e.g the button is disabled if the are no rolls left for the player) and GameEngine checks whether the game is over. When the "Next player" button is pressed, on the other hand, the turn is given to the next player in line and all the dices/labels/buttons are set properly;
+
+	- displaying the game status. All the info about the game (which player is in turn, how many rolls has used, how many rolls there are left) has been implemented using labels;
+
+	- change the number of player. In the file gameengine.hh there's a constant variable called "INITIAL_NUMBER_OF_PLAYER" initially set to 2 that is used to determine the number of players in the game;
+
+	- possibility to start the game again (reset). The reset button is responsible for stopping the current game and starting another one. More specifically, the actions performed are: reset game and players, reset dices, reset lock buttons, reset new roll and next player buttons, reset player labels, reset winner label, reset timer and reset background color;
+
+	- timer telling the time used so far. This functionality has been integrated using a QTimer object displaying the minutes and seconds since the beginning of the current game. When the program starts the timer also starts. When the game is over it stops and when the game is restarted so does the timer;
+
+In addition to these basics features, the following bonus tasks have been integrate in the yatzy game:
+
+	- Dices have been implemented with the png figures given in the template code (as explained before);
+	
+	- The background color of the user interface changes, when the game is over. Resetting the game sets the original color.
+
+The execution flow of the program includes several steps. When the program is started the game begins and the turn is given to the first player in the list. At this point there are three choices: reset the game, roll the dice, or move on to the next player. If you decide to roll the dice with the appropriate button, the rolled dice are displayed and the player has the option to block some, none or all of them. If the player still has throws available, you have the same choices. Otherwise, the button is blocked. If, on the other hand you decide to change players the same choices are presented again. When the game ends, the buttons for rolling dice and changing players are disabled and the background of the application changes color. Now the player has only one choice: to restart the game with the appropriate button. 
+Finally, the rules of the game are the ones explained in the project text.
